@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: kubernetes-go-example
+build:
+  artifacts:
+    - image: busybox
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+      - name: kubernetes-go-example
+        chartPath: helm/kubernetes-go-example
+        valuesFiles:
+          - helm/kubernetes-go-example/values.yaml
+        version: 0.1.0
